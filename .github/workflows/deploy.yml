@@ -1,0 +1,43 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: |
+          npm install -g html-minifier-terser
+          npm install -g clean-css-cli
+          npm install -g uglify-js
+
+      - name: Optimize assets
+        run: |
+          # Minify HTML
+          html-minifier-terser --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true index.html -o index.html
+          
+          # Optimize images if they exist
+          if [ -d "assets/images" ]; then
+            find assets/images -type f -name "*.jpg" -exec jpegoptim --strip-all --max=85 {} \;
+            find assets/images -type f -name "*.png" -exec optipng -o5 {} \;
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: .
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository-name: yallah-holding/YALLAH-HOLDING
+          target-folder: / 

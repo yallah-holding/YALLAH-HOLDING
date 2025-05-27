@@ -1,0 +1,33 @@
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Dépendances
+node_modules/
+vendor/
+
+# Fichiers d'environnement
+.env
+.env.local
+.env.*.local
+
+# Fichiers de build
+dist/
+build/
+*.log
+
+# Fichiers d'éditeur
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Fichiers de cache
+.cache/
+.temp/
+*.cache
+
+# Fichiers de sauvegarde
+*.bak
+*.backup
+*~ 

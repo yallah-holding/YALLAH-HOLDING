@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YALLAH HOLDING GUINEA - Leader en investissement et développement</title>
+    <meta name="description" content="YALLAH HOLDING GUINEA est un groupe diversifié spécialisé dans la gestion de fonds, le commerce, l'agriculture, la construction et les services de sécurité.">
+    <meta name="keywords" content="Yallah Holding, Guinée, investissement, agriculture, construction, sécurité, commerce">
+    <meta name="author" content="Yallah Holding Guinea">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="YALLAH HOLDING GUINEA">
+    <meta property="og:description" content="Leader en investissement et développement en Guinée">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
+    
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 1s ease-in-out;
+        }
+        .animate-slideIn {
+            animation: slideIn 0.8s ease-out;
+        }
+        .hero-slide {
+            transition: opacity 1s ease-in-out;
+        }
+        .language-selector:hover .language-dropdown {
+            display: block;
+        }
+        .search-results {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .sector-card {
+            transition: all 0.3s ease;
+        }
+        .sector-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        #logoPreview {
+            max-height: 50px;
+            max-width: 150px;
+            object-fit: contain;
+        }
+        #logoUploadLabel {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #logoUploadLabel:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        #logoUploadInput {
+            display: none;
+        }
+        
+        /* Responsive Design Improvements */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .hero-slide h2 {
+                font-size: 2rem;
+            }
+            .sector-card {
+                margin-bottom: 1.5rem;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .loading.active {
+            display: flex;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #991b1b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Loading Indicator -->
+    <div class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-red-900 text-white sticky top-0 z-50 shadow-lg">
+        <!-- ... existing header code ... -->
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen overflow-hidden">
+        <div class="hero-slide absolute inset-0 flex items-center justify-center bg-gray-900 opacity-100">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover" data-src="https://assets.mixkit.co/videos/preview/mixkit-businessman-analyzing-data-while-seated-at-his-desk-15845-large.mp4">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-businessman-analyzing-data-while-seated-at-his-desk-15845-large.mp4" type="video/mp4">
+            </video>
+            <div class="container mx-auto px-4 z-10 text-white text-center animate-slideIn">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Investir pour l'avenir</h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">YALLAH HOLDING façonne l'économie guinéenne à travers des investissements stratégiques et durables</p>
+                <a href="#about" class="bg-red-700 hover:bg-red-600 text-white px-8 py-3 rounded-lg text-lg font-semibold transition duration-300 inline-block">Découvrir</a>
+            </div>
+        </div>
+
+        <!-- ... autres slides ... -->
+    </section>
+
+    <!-- Autres sections -->
+    <!-- ... existing sections code ... -->
+
+    <!-- Footer -->
+    <footer class="bg-red-900 text-white pt-12 pb-6">
+        <!-- ... existing footer code ... -->
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Afficher le loading pendant le chargement de la page
+        window.addEventListener('load', function() {
+            document.querySelector('.loading').classList.remove('active');
+        });
+        document.querySelector('.loading').classList.add('active');
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Language Selector
+        const languageButton = document.getElementById('languageButton');
+        const languageDropdown = document.getElementById('languageDropdown');
+        
+        languageButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            languageDropdown.classList.toggle('hidden');
+        });
+        
+        document.addEventListener('click', () => {
+            languageDropdown.classList.add('hidden');
+        });
+        
+        languageDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Hero Slider avec gestion de la performance
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        let slideInterval;
+        
+        function showSlide(n) {
+            slides.forEach((slide, index) => {
+                slide.style.opacity = index === n ? '1' : '0';
+            });
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('opacity-100', index === n);
+                dot.classList.toggle('opacity-50', index !== n);
+            });
+            
+            currentSlide = n;
+        }
+        
+        function startSlideShow() {
+            slideInterval = setInterval(() => {
+                let nextSlide = (currentSlide + 1) % slides.length;
+                showSlide(nextSlide);
+            }, 5000);
+        }
+        
+        function stopSlideShow() {
+            clearInterval(slideInterval);
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopSlideShow();
+                showSlide(index);
+                startSlideShow();
+            });
+        });
+        
+        startSlideShow();
+
+        // Optimisation des images
+        function lazyLoadImages() {
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
+        }
+        
+        // Appel de la fonction de lazy loading
+        lazyLoadImages();
+
+        // Gestion des erreurs
+        window.addEventListener('error', function(e) {
+            console.error('Une erreur est survenue:', e.message);
+            // Ici vous pouvez ajouter votre logique de tracking d'erreurs
+        });
+
+        // Optimisation du chargement des ressources
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lazy loading des images
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            const lazyVideos = document.querySelectorAll('video[data-src]');
+            
+            const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        if (element.tagName === 'IMG') {
+                            element.src = element.dataset.src;
+                        } else if (element.tagName === 'VIDEO') {
+                            element.src = element.dataset.src;
+                            element.load();
+                        }
+                        element.removeAttribute('data-src');
+                        observer.unobserve(element);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => lazyLoadObserver.observe(img));
+            lazyVideos.forEach(video => lazyLoadObserver.observe(video));
+
+            // Performance monitoring
+            if ('performance' in window) {
+                window.addEventListener('load', function() {
+                    const timing = window.performance.timing;
+                    const loadTime = timing.loadEventEnd - timing.navigationStart;
+                    console.log('Page load time:', loadTime + 'ms');
+                });
+            }
+        });
+
+        // Gestion du cache pour les ressources statiques
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful');
+                }).catch(function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+
+        // Analytics (à personnaliser selon vos besoins)
+        function trackEvent(category, action, label) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', action, {
+                    'event_category': category,
+                    'event_label': label
+                });
+            }
+        }
+    </script>
+</body>
+</html> 
