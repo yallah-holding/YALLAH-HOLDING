@@ -6,22 +6,25 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
           cache: 'npm'
 
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -34,36 +37,27 @@ jobs:
           npm install -g clean-css-cli
           npm install -g uglify-js
           npm install -g svgo
+          npm install -g imagemin-cli
 
       - name: Optimize assets
         run: |
           # Minify HTML
-          html-minifier-terser --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true index.html -o index.html
+          find . -name "*.html" -exec html-minifier-terser --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true {} -o {} \;
           
-          # Optimize images if they exist
-          if [ -d "assets/images" ]; then
-            find assets/images -type f -name "*.jpg" -exec jpegoptim --strip-all --max=85 {} \;
-            find assets/images -type f -name "*.png" -exec optipng -o5 {} \;
-            find assets/images -type f -name "*.svg" -exec svgo {} \;
-          fi
-
+          # Optimize images
+          find assets/images -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.gif" \) -exec imagemin {} -o {} \;
+          find assets/images -type f -name "*.svg" -exec svgo {} \;
+          
           # Optimize CSS
-          if [ -d "assets/css" ]; then
-            find assets/css -name "*.css" -exec cleancss -o {} {} \;
-          fi
-
+          find assets/css -name "*.css" -exec cleancss -o {} {} \;
+          
           # Optimize JavaScript
-          if [ -d "assets/js" ]; then
-            find assets/js -name "*.js" -exec uglifyjs {} -o {} \;
-          fi
+          find assets/js -name "*.js" -exec uglifyjs {} -o {} \;
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
           folder: .
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository-name: yallah-holding/YALLAH-HOLDING
-          target-folder: /
+          branch: gh-pages
           clean: true
           single-commit: true 
