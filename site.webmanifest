@@ -1,0 +1,39 @@
+{
+  "name": "YALLAH HOLDING GUINEA",
+  "short_name": "YALLAH",
+  "description": "Leader en investissement et développement en Guinée",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#7f1d1d",
+  "theme_color": "#7f1d1d",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "À propos",
+      "url": "/#about",
+      "description": "En savoir plus sur YALLAH HOLDING"
+    },
+    {
+      "name": "Secteurs",
+      "url": "/#sectors",
+      "description": "Découvrir nos secteurs d'activité"
+    }
+  ],
+  "categories": ["business", "finance", "investment"],
+  "lang": "fr",
+  "dir": "ltr"
+} 

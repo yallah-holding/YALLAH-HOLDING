@@ -4,7 +4,7 @@ Thumbs.db
 
 # Dépendances
 node_modules/
-vendor/
+package-lock.json
 
 # Fichiers d'environnement
 .env
@@ -14,7 +14,13 @@ vendor/
 # Fichiers de build
 dist/
 build/
+out/
+
+# Fichiers de logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Fichiers d'éditeur
 .idea/

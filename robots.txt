@@ -1,6 +1,35 @@
+# Configuration pour tous les robots
 User-agent: *
 Allow: /
-Sitemap: https://yallah-holding.com/sitemap.xml
+
+# Sitemap
+Sitemap: https://yallah-holding.github.io/YALLAH-HOLDING/sitemap.xml
+
+# Protection des ressources sensibles
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /assets/raw/
+Disallow: /node_modules/
+Disallow: /package-lock.json
+Disallow: /package.json
+Disallow: /README.md
+Disallow: /*.log$
+
+# Optimisation du crawl
+Crawl-delay: 10
+
+# Règles spécifiques pour les bots majeurs
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Yandexbot
+Allow: /
+Crawl-delay: 5
 
 # Interdire l'accès aux dossiers sensibles
 Disallow: /cgi-bin/

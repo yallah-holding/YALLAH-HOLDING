@@ -4,23 +4,36 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
+          cache: 'npm'
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install dependencies
         run: |
           npm install -g html-minifier-terser
           npm install -g clean-css-cli
           npm install -g uglify-js
+          npm install -g svgo
 
       - name: Optimize assets
         run: |
@@ -31,6 +44,17 @@ jobs:
           if [ -d "assets/images" ]; then
             find assets/images -type f -name "*.jpg" -exec jpegoptim --strip-all --max=85 {} \;
             find assets/images -type f -name "*.png" -exec optipng -o5 {} \;
+            find assets/images -type f -name "*.svg" -exec svgo {} \;
+          fi
+
+          # Optimize CSS
+          if [ -d "assets/css" ]; then
+            find assets/css -name "*.css" -exec cleancss -o {} {} \;
+          fi
+
+          # Optimize JavaScript
+          if [ -d "assets/js" ]; then
+            find assets/js -name "*.js" -exec uglifyjs {} -o {} \;
           fi
 
       - name: Deploy to GitHub Pages
@@ -40,4 +64,6 @@ jobs:
           folder: .
           token: ${{ secrets.GITHUB_TOKEN }}
           repository-name: yallah-holding/YALLAH-HOLDING
-          target-folder: / 
+          target-folder: /
+          clean: true
+          single-commit: true 
